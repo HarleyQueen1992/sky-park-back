@@ -26,12 +26,7 @@ import { NewsModule } from './news/news.module'
 			username: 'admin',
 			password: 'secret',
 			database: 'sky_park',
-			entities: [
-				Event,
-				Audience,				Ticket,
-				Booking,
-				News
-			],
+			entities: [Event, Audience, Ticket, Booking, News],
 			synchronize: true,
 			autoLoadEntities: true
 		}),
