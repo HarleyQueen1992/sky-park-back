@@ -1,14 +1,4 @@
-import { Transform } from 'class-transformer'
-import {
-	IsArray,
-	IsDate,
-	IsNumber,
-	IsOptional,
-	IsPhoneNumber,
-	IsString,
-	MaxLength
-} from 'class-validator'
-import { Audience } from 'src/typeorm/entities/Audience'
+import { IsOptional, IsString, MaxLength } from 'class-validator'
 
 export class EventDto {
 	@IsString()
@@ -32,5 +22,4 @@ export class EventDto {
 
 	@IsString()
 	aboutMe: string
-
 }

@@ -12,6 +12,9 @@ export class Ticket {
 	@Column({ name: 'sub_title' })
 	sub_title: string
 
+	@Column({ name: 'descript', type: 'text' })
+	descript: string
+
 	@ManyToOne(() => Event, event => event.tickets, {
 		onDelete: 'CASCADE'
 	})

@@ -20,15 +20,14 @@ export class EventService {
 	) {}
 
 	async pagination(query: QueryDto) {
-		console.log(query);
+		console.log(query)
 		const limit = query.limit || 10
 		const page = query.page || 0
 		const audit = query.audit || null
-		
-		
+
 		const [result, total] = await this.eventRepository.findAndCount({
 			where: {
-				audience: { id: audit && +audit  },
+				audience: { id: audit && +audit }
 			},
 			relations: ['audience'],
 			select: {
@@ -57,25 +56,20 @@ export class EventService {
 	async findById(id: number) {
 		return await this.eventRepository.findOne({
 			where: { id },
-			relations: ['audience']
+			relations: ['audience', 'tickets']
 		})
 	}
 
 	async createEvent(id: number, dto: EventDto, banner = null) {
-		
 		let bannerPath = null
 
 		if (banner) {
 			bannerPath = this.fileService.createFile(FileType.BANNER, banner)
 		}
 		const audits = await this.audienceRepository.findOne({
-				where: { id },
-			}
-		)
-		console.log(audits,
-			dto,
-			bannerPath);
-		
+			where: { id }
+		})
+
 		const event = this.eventRepository.create({
 			audience: audits,
 			...dto,
@@ -84,9 +78,12 @@ export class EventService {
 		return await this.eventRepository.save(event)
 	}
 
-	async updateEventById(id: number, dto: EventUpdateDto, banner = null, preview = null) {
-
-		
+	async updateEventById(
+		id: number,
+		dto: EventUpdateDto,
+		banner = null,
+		preview = null
+	) {
 		if (!banner && !preview) {
 			await this.eventRepository.update(id, { ...dto })
 		} else if (!banner) {
@@ -100,7 +97,7 @@ export class EventService {
 			const bannerPath = this.fileService.createFile(FileType.BANNER, banner)
 			await this.eventRepository.update(id, {
 				...dto,
-				banner: bannerPath,
+				banner: bannerPath
 			})
 		} else {
 			const bannerPath = this.fileService.createFile(FileType.BANNER, banner)

@@ -9,12 +9,14 @@ import { join, resolve } from 'path'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { EventModule } from './event/event.module'
 import { Audience } from './typeorm/entities/Audience'
+import { Event } from './typeorm/entities/Event'
 import { AudienceModule } from './audience/audience.module'
 import { Ticket } from './typeorm/entities/Ticket'
 import { Booking } from './typeorm/entities/Booking'
 import { BookingModule } from './booking/booking.module'
 import { News } from './typeorm/entities/News'
 import { NewsModule } from './news/news.module'
+import { TicketModule } from './tikcet/ticket.module'
 
 @Module({
 	imports: [
@@ -37,6 +39,7 @@ import { NewsModule } from './news/news.module'
 		FileModule,
 		EventModule,
 		AudienceModule,
+		TicketModule,
 		BookingModule,
 		NewsModule
 	],

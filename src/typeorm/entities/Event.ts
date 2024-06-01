@@ -30,7 +30,7 @@ export class Event {
 	@Column({ name: 'preview', nullable: true })
 	preview: string
 
-	@Column({ name: 'description'})
+	@Column({ name: 'description', type: 'text' })
 	description: string
 
 	@Column({ name: 'about_me', type: 'text' })
@@ -42,7 +42,6 @@ export class Event {
 	@UpdateDateColumn()
 	updated_at: Date
 
-
 	@ManyToOne(() => Audience, audience => audience.events, {
 		onDelete: 'CASCADE'
 	})
@@ -50,6 +49,4 @@ export class Event {
 
 	@OneToMany(() => Ticket, ticket => ticket.event)
 	tickets: Ticket[]
-
-	
 }
