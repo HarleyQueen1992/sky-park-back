@@ -13,17 +13,24 @@ export class TicketService {
 		@InjectRepository(Event) private eventRepository: Repository<Event>
 	) {}
 	async findAll() {
-		return await this.ticketRepository.find()
+		return await this.ticketRepository.find({
+			relations: ['event']
+		})
 	}
 
 	async findById(id: number) {
+		return await this.ticketRepository.find({
+			where: { id },
+			relations: ['event']
+		})
+	}
+	async findByEventId(id: number) {
 		return await this.ticketRepository.find({
 			where: { event: { id } }
 		})
 	}
 	async createTicket(id: number, dto: TicketDto) {
 		const event = await this.eventRepository.findOneBy({ id })
-		console.log(event)
 
 		if (!event) throw new BadRequestException('Event not found')
 

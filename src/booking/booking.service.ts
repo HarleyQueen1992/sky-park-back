@@ -9,7 +9,7 @@ import { BookingDto } from './dto/booking.dto'
 export class BookingService {
 	constructor(
 		@InjectRepository(Booking) private bookingRepository: Repository<Booking>,
-		@InjectRepository(Ticket) private ticketRepository: Repository<Ticket>,
+		@InjectRepository(Ticket) private ticketRepository: Repository<Ticket>
 	) {}
 
 	async findBookingById(id: number) {
@@ -28,7 +28,6 @@ export class BookingService {
 		// 		id: true,
 		// 		tickets: {
 		// 			id: true,
-					
 		// 		}
 		// 	}
 		// })
@@ -39,27 +38,20 @@ export class BookingService {
 		// 	email: dto.email,
 		// 	phone: dto.phone
 		// }
-
 		// let booking = this.bookingRepository.create({ ...order })
-
 		// booking = await this.bookingRepository.save(booking)
-
 		// let tickets = []
-
 		// for (let item of dto.tickets) {
 		// 	const time = await this.timeRepository.findOne({
 		// 		where: {
 		// 			id: item.id
 		// 		}
 		// 	})
-
 		// 	if (!time) throw new BadRequestException('Time not found')
 		// 	await this.timeRepository.update(time.id, {
 		// 		countPlaces: time.countPlaces - 1
 		// 	})
-
 		// 	time.countPlaces -= 1
-
 		// 	tickets.push(
 		// 		this.ticketRepository.create({
 		// 			isChild: item.isChild,

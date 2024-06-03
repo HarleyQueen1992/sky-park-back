@@ -28,6 +28,11 @@ export class TicketController {
 		return this.ticketsService.findById(id)
 	}
 
+	@Get('/event/:id')
+	findByEventId(@Param('id') id: number) {
+		return this.ticketsService.findByEventId(id)
+	}
+
 	@Post(':id')
 	@Auth()
 	createTicket(
