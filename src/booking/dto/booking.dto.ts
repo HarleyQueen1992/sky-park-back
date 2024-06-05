@@ -1,4 +1,5 @@
 import {
+	IsArray,
 	IsEmail,
 	IsPhoneNumber,
 	IsString,
@@ -17,7 +18,8 @@ export class BookingDto {
 	@IsPhoneNumber()
 	phone: string
 
-	@ValidateNested({ each: true })
-	@Type(() => TicketDto)
+	@IsArray()
+	// @ValidateNested({ each: true })
+	// @Type(() => TicketDto)
 	tickets: TicketDto[]
 }

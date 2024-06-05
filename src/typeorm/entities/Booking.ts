@@ -1,4 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import {
+	Column,
+	Entity,
+	JoinTable,
+	ManyToMany,
+	OneToMany,
+	PrimaryGeneratedColumn
+} from 'typeorm'
+import { Ticket } from './Ticket'
+import { BookingToTickets } from './BookingToTickets'
 
 @Entity({ name: 'booking' })
 export class Booking {
@@ -13,4 +22,15 @@ export class Booking {
 
 	@Column({ name: 'phone' })
 	phone: string
+
+	// @ManyToMany(() => Ticket, {
+	// 	onDelete: 'CASCADE'
+	// })
+	// @JoinTable()
+	// tickets: Ticket[]
+	@OneToMany(
+		() => BookingToTickets,
+		bookingToTickets => bookingToTickets.booking
+	)
+	bookingToTickets: BookingToTickets[]
 }

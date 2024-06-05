@@ -17,6 +17,7 @@ import { BookingModule } from './booking/booking.module'
 import { News } from './typeorm/entities/News'
 import { NewsModule } from './news/news.module'
 import { TicketModule } from './tikcet/ticket.module'
+import { BookingToTickets } from './typeorm/entities/BookingToTickets'
 
 @Module({
 	imports: [
@@ -28,7 +29,7 @@ import { TicketModule } from './tikcet/ticket.module'
 			username: 'admin',
 			password: 'secret',
 			database: 'sky_park',
-			entities: [Event, Audience, Ticket, Booking, News],
+			entities: [Event, Audience, Ticket, Booking, News, BookingToTickets],
 			synchronize: true,
 			autoLoadEntities: true
 		}),

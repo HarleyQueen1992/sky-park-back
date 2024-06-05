@@ -1,5 +1,12 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import {
+	Column,
+	Entity,
+	ManyToOne,
+	OneToMany,
+	PrimaryGeneratedColumn
+} from 'typeorm'
 import { Event } from './Event'
+import { BookingToTickets } from './BookingToTickets'
 
 @Entity({ name: 'ticket' })
 export class Ticket {
@@ -22,4 +29,10 @@ export class Ticket {
 
 	@Column({ name: 'price' })
 	price: number
+
+	@OneToMany(
+		() => BookingToTickets,
+		bookingToTickets => bookingToTickets.ticket
+	)
+	bookingToTickets: BookingToTickets[]
 }
